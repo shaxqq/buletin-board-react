@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const api = axios.create({ baseURL: 'http://localhost:5000/api' })
+const api = axios.create({ baseURL: '/api' })
 
 export const createPost = param => api.post(`/post`, param)
 export const getAllPost = () => api.get(`/posts`)
