@@ -6,7 +6,7 @@ export const useStyles = makeStyles((theme)=>({
         background: '#a5a1a16e'
     },
     rootContainer: {
-        width: '50%',
+        width: '80%',
     },
     createRoot: {          
           display: "flex",
