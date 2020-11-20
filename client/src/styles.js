@@ -47,4 +47,13 @@ export const useStyles = makeStyles((theme)=>({
         marginBottom: '10px',
         background: '#c8c8c8'
       },
+      postsTable: {
+        flexGrow: 1,
+        display: 'flex',
+        height: 224,
+        
+      },
+      formControl: {
+        minWidth: 120,
+      },
 }))

@@ -4,7 +4,7 @@ import {
   Card,
   CardContent,
   CardActions,
-  Fab, TextField, Container, Button, Box 
+  Fab, TextField, Container, Button, Box, Select, MenuItem, Tabs, Tab, FormControl, InputLabel,  
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
@@ -17,12 +17,19 @@ export const AllPost = () => {
   const [text, setText] = useState("");
   const [post, setPost] = useState({
     title: "",
-    username: "",
+    city: "",
     content: [],
   });
+  const [tab, setTab] = useState(0);
+
+
+  const handleChange = (event, newTab) => {
+    setTab(newTab);
+  };
   const changeTitle = (e) => {
     e.persist();
     setPost((param) => {
+      console.log(param)
       return {
         ...param,
         title: e.target.value,
@@ -30,13 +37,15 @@ export const AllPost = () => {
     });
   };
   const changeName = (e) => {
-    e.persist();
+    e.preventDefault();
     setPost((param) => {
+      console.log(param)
       return {
         ...param,
-        username: e.target.value,
+        city: e.target.value,
       };
     });
+
   };
   const changeContent = (e) => {
     e.persist();
@@ -60,12 +69,35 @@ export const AllPost = () => {
     });
   };
 
- // console.log(text.config);
+  const TabPanel = () => {
+ 
+    for (let i = 0; i < text.length; i++) {
+      const element = text[i].props.children[0].props.children[1].props.children;
+    //  console.log(value)
+    //  console.log(index)
+     
+      if(element === `${tab}`) {
+        console.log(text[i])
+      return( <div>
+          <Box p={3}>
+            {text[i]}
+          </Box>
+      </div>)
+    } 
+  }
+    
+  }
 
-  const postContent = useEffect(() => {
+  console.log(TabPanel())
+
+ 
+  
+
+  useEffect(() => {
     apis.getAllPost().then((post) => {
-      //   setText(post)
+        
       const dataPost = post.data.data.map((child) => {
+        
         const deletePost = (e) => {
           e.preventDefault();
           if (window.confirm(`Удалить данный пост ${child._id} ?`)) {
@@ -75,23 +107,23 @@ export const AllPost = () => {
         };
         const updatePost = async () => {
           await apis.updatePostById(child._id, child).then(() => {
-  //          console.log(child._id, child);
+    //  console.log(child._id, child);
 
             // window.location.href = `/post/${child._id}`
           });
         };
 
-   //     console.log(child);
+      //  console.log(child.city);
         return (
           <Card key={child._id} className={classes.allCardPost}>
             <CardContent>
-              <Typography variant="h5" component="h2">
+              <Typography >
                 {child.title}
               </Typography>
               <Typography color="textSecondary" className={classes.allUserPost}>
-                {child.username}
+                {child.city}
               </Typography>
-              <Typography variant="body2" component="p">
+              <Typography >
                 {child.content}
               </Typography>
             </CardContent>
@@ -120,17 +152,38 @@ export const AllPost = () => {
       return setText(dataPost);
     });
   }, []);
- // console.log(text);
- // console.log(postContent);
+ 
+ //console.log(text)
+
+
+ 
+ 
+
+ //const forms = text.map((child)=>{console.log(child)})
 
   return (
     <div>
        <Container className={classes.createRoot}>
         <Box className={classes.createInputBox}>
           <TextField id="title" label="Title" onChange={changeTitle} />
-          <TextField id="username" label="nickName" onChange={changeName} />
+          <FormControl className={classes.formControl} >
+        <InputLabel id="demo-simple-select-label">City </InputLabel>
+        <Select
+          labelId="city"
+          id="city"
+          value={post.city}
+          onChange={changeName}
+          style={{paddingRight: '1px'}}
+          >
+          <MenuItem value={`0`}>option-0</MenuItem>
+          <MenuItem value={`1`}>option-1</MenuItem>
+          <MenuItem value={`2`}>option-2</MenuItem>
+          <MenuItem value={`3`}>option-3</MenuItem>
+          </Select>
+          </FormControl>
+          
         </Box>
-        <TextField
+                <TextField
           id="content"
           label="Text"
           rows={3}
@@ -153,7 +206,42 @@ export const AllPost = () => {
           добавить
         </Button>
       </Container>
-      {text}
+
+      <div className={classes.postsTable}>
+        <Tabs  orientation="vertical"
+        variant="scrollable"
+        value={tab}
+        onChange={handleChange}
+        aria-label="Vertical tabs example">
+           <Tab label="Item One" index={0} />
+        <Tab label="Item Two"  index={1} />
+        <Tab label="Item Three" index={2}/>
+        <Tab label="Item four" index={3}/>
+           </Tabs>
+        
+          { text ? <TabPanel /> : null }
+          { text ? <TabPanel /> : null }
+       
+      </div>
+     
     </div>
   );
 };
+//   <TextField id="username" label="nickName" onChange={changeName} />
+
+
+   
+//      <TabPanel value={0} index={0}>
+//                 
+//      </TabPanel>
+//      <TabPanel value={`1`} index={1}>
+//      
+//      </TabPanel>
+//      <TabPanel value={'2'} index={2}>
+//      
+//      </TabPanel>
+
+
+//  { text ? <TabPanel value={0} index={0} /> : null }
+//  { text ? <TabPanel value={1} index={1} /> : null }
+//  { text ? <TabPanel value={2} index={2} /> : null }

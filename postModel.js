@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const PostModel = new Schema(
   {
-    username: { type: String },
+    city: { type: String },
     title: { type: String },
     content: { type: String },
     date: { type: String, default: Date.now() },

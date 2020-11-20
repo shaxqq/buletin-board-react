@@ -5,7 +5,7 @@ require('dotenv').config()
 
 mongoose
   .connect(process.env.MONGODB_URI || 
-    "mongodb://localhost/bulletinboard",
+    "mongodb+srv://sazeke:sazekeL1@cluster0.nv88g.mongodb.net/informationSupport?retryWrites=true&w=majority",
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .catch((e) => {
