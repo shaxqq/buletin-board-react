@@ -6,7 +6,7 @@ const PostModel = new Schema(
     city: { type: String },
     title: { type: String },
     content: { type: String },
-    date: { type: String, default: Date.now() },
+    date: { type: Date, default: Date.now() },
   },
   { timestamps: true }
 );

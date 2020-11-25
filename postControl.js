@@ -2,7 +2,7 @@ const PostModel = require('./postModel')
 
 createPost = (req, res) => {
     const body = req.body
-    console.log(body)
+  //  console.log(body)
     if(!body){
         return res.status(400).json({
             success: false,
@@ -10,8 +10,7 @@ createPost = (req, res) => {
         })
     }
     const post = new PostModel(body)
-    console.log(post)
-
+    //console.log(post)
     if(!post) {
         return res.status(400).json({
             success: false,
@@ -47,7 +46,7 @@ updatePost = async (req, res) => {
                 message: 'Post not found',
             })
         }
-        post.name = body.name
+        post.city = body.city
         post.title = body.title
         post.content = body.content
         post.save().then(()=>{

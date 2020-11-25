@@ -38,6 +38,15 @@ const groupBy = (xs, fn) => {
     return rv;
   }, {});
 };
+const dateFormat = (date) => {
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const hour = date.getHours();
+  const minutes = date.getMinutes();
+  const monthString = month >= 10 ? month : `0${month}`;
+  const dayString = day >= 10 ? day : `0${day}`;
+  return `${date.getFullYear()}-${monthString}-${dayString} ${hour}:${minutes}`;
+};
 
 export const AllPost = () => {
   const classes = useStyles();
@@ -49,16 +58,11 @@ export const AllPost = () => {
   });
   const [tab, setTab] = useState("0");
   const [open, setOpen] = useState(false);
-  const [colorTab, setColorTab] = useState("");
+  const [visible, setVisible] = useState(true);
 
-  // const badgeVisible = () => {
-  //   if (text.length === text.length) {
-  //     console.log("on");
-  //
-  //     setColorTab(!colorTab);
-  //   }
-  //   console.log("off");
-  // };
+  const badgeVisible = () => {
+   // setVisible(!visible);
+  };
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
@@ -71,7 +75,7 @@ export const AllPost = () => {
   const changeTitle = (e) => {
     e.persist();
     setPost((param) => {
-      console.log(param);
+      // console.log(param);
       return {
         ...param,
         title: e.target.value,
@@ -81,7 +85,7 @@ export const AllPost = () => {
   const changeName = (e) => {
     e.preventDefault();
     setPost((param) => {
-      console.log(param);
+      //   console.log(param);
       return {
         ...param,
         city: e.target.value,
@@ -105,6 +109,7 @@ export const AllPost = () => {
       }
       setOpen(true);
       setPost(post);
+      console.log(post)
       window.setTimeout(() => {
         window.location.href = "/";
       }, 1500);
@@ -113,8 +118,8 @@ export const AllPost = () => {
   };
   const updatePost = async () => {
     await apis.updatePostById(post._id, post).then(() => {
-      //  console.log(child._id, child);
-      // window.location.href = `/post/${child._id}`
+      //  console.log(post._id, post);
+        window.location.href = `/`
     });
   };
 
@@ -130,15 +135,15 @@ export const AllPost = () => {
   const postsByCity = groupBy(posts, (post) => post.city);
   //console.log()
 
- // console.log(postsId);
- // console.log(posts);
- // console.log(postsByCity);
+  // console.log(visible);
+   console.log(posts);
+  // console.log(postsByCity);
 
   return (
     <div>
       <Container className={classes.createRoot}>
         <Box className={classes.createInputBox}>
-          <TextField id="title" label="Title" onChange={changeTitle} />
+          <TextField id="title" label="Title" onChange={changeTitle} value={post.title} />
           <FormControl className={classes.formControl}>
             <InputLabel id="demo-simple-select-label">City </InputLabel>
             <Select
@@ -160,6 +165,7 @@ export const AllPost = () => {
           label="Text"
           rows={6}
           multiline
+          value={post.content}
           rowsMax={50}
           className={classes.createInputField}
           onChange={changeContent}
@@ -174,9 +180,13 @@ export const AllPost = () => {
         >
           отменить
         </Button>
-        <Button color="primary" variant="contained" onClick={handlePost}>
+        { visible ? <Button color="primary" variant="contained" visible='true' onClick={handlePost}>
           добавить
-        </Button>
+        </Button> : <Button color="primary" variant="contained" visible='false' onClick={updatePost}>
+          обновить
+        </Button> }
+       
+        
       </Container>
 
       <div className={classes.postsTable}>
@@ -189,15 +199,29 @@ export const AllPost = () => {
           textColor="primary"
         >
           {Object.keys(postsByCity).map((city) => (
-            <Tab label={city} value={city} key={city} />
+         
+          
+                <Tab
+                  label={city}
+                  value={city}
+                  key={city}
+                 // style={{ color: "red" }}
+                />
+ 
+         
           ))}
         </Tabs>
+
         {Object.keys(postsByCity).map((city) => (
           <TabPanel value={tab} index={city} key={city}>
             {postsByCity[city].map((post) => (
               <Card key={post._id} className={classes.allCardPost}>
                 <CardContent>
-                  <Typography>{post.title}</Typography>
+                  <Box>
+                    <Typography>{post.title}</Typography>
+                   <Typography>{dateFormat(new Date(post.date))}</Typography> 
+                  
+                  </Box>
                   <Typography
                     color="textSecondary"
                     className={classes.allUserPost}
@@ -211,7 +235,7 @@ export const AllPost = () => {
                     color="primary"
                     aria-label="edit"
                     size="small"
-                    onClick={updatePost}
+                    onClick={()=>{setPost(post); setVisible(false)}}
                   >
                     <EditIcon />
                   </Fab>
