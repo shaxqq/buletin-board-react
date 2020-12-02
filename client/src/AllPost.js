@@ -136,8 +136,8 @@ export const AllPost = () => {
   //console.log()
 
   // console.log(visible);
-  console.log(posts);
-   console.log(postsByCity);
+  // console.log(posts);
+   //console.log(postsByCity);
 
   return (
     <div>
