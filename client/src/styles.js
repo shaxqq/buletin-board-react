@@ -3,14 +3,18 @@ import { makeStyles } from "@material-ui/core/styles";
 export const useStyles = makeStyles((theme)=>({
     root: {
         display: 'flex',
-        background: '#a5a1a16e'
+        background: '#a5a1a16e',
+        height: '100vh',
+        overflow: 'overlay',
     },
     rootContainer: {
-        width: '80%',
+     
     },
     createRoot: {          
           display: "flex",
-          flexDirection: 'column'
+          flexDirection: 'column',
+          width: '80%',
+          marginBottom: '20px'
       },
       createContent: {
         margin: theme.spacing(2),
@@ -27,33 +31,43 @@ export const useStyles = makeStyles((theme)=>({
       createInputField: {
         marginTop: '35px',
       },
-      allUserPost: {
+      userPost: {
         marginBottom: 12,
       },
-      allFooterCardPost: {
+      footerCardPost: {
         display: "flex",
         justifyContent: "flex-end",
       },
-      allCreatePost: {
+      titleCardPost: {
+        display: "flex",
+       justifyContent: 'space-between',
+      },
+      createPost: {
         display: "flex",
         justifyContent: "flex-end",
         alignItems: "center",
         padding: "35px 10px 15px 0",
       },
-      allTextPost: {
+      textPost: {
         marginRight: 18,
       },
-      allCardPost: {
+      cardPost: {
         marginBottom: '10px',
-        background: '#c8c8c8'
+        background: '#c8c8c8',
+        margin: '0 0 10px 20px',
       },
       postsTable: {
         flexGrow: 1,
         display: 'flex',
-        height: 224,
-        
+        height: '100%',
+        marginBottom: '20px',
+
       },
       formControl: {
         minWidth: 120,
+      },
+      cardActual: {
+        height: '50%',
+        
       },
 }))

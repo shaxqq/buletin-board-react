@@ -61,7 +61,7 @@ export const AllPost = () => {
   const [visible, setVisible] = useState(true);
 
   const badgeVisible = () => {
-   // setVisible(!visible);
+    // setVisible(!visible);
   };
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -109,7 +109,7 @@ export const AllPost = () => {
       }
       setOpen(true);
       setPost(post);
-      console.log(post)
+      console.log(post);
       window.setTimeout(() => {
         window.location.href = "/";
       }, 1500);
@@ -119,7 +119,7 @@ export const AllPost = () => {
   const updatePost = async () => {
     await apis.updatePostById(post._id, post).then(() => {
       //  console.log(post._id, post);
-        window.location.href = `/`
+      window.location.href = `/`;
     });
   };
 
@@ -136,16 +136,21 @@ export const AllPost = () => {
   //console.log()
 
   // console.log(visible);
-   console.log(posts);
-  // console.log(postsByCity);
+  console.log(posts);
+   console.log(postsByCity);
 
   return (
     <div>
       <Container className={classes.createRoot}>
         <Box className={classes.createInputBox}>
-          <TextField id="title" label="Title" onChange={changeTitle} value={post.title} />
+          <TextField
+            id="title"
+            label="Title"
+            onChange={changeTitle}
+            value={post.title}
+          />
           <FormControl className={classes.formControl}>
-            <InputLabel id="demo-simple-select-label">City </InputLabel>
+            <InputLabel id="demo-simple-select-label">Options </InputLabel>
             <Select
               labelId="city"
               id="city"
@@ -170,23 +175,35 @@ export const AllPost = () => {
           className={classes.createInputField}
           onChange={changeContent}
         />
-      </Container>
-      <Container className={classes.createContent}>
-        <Button
-          color="secondary"
-          variant="contained"
-          className={classes.createButton}
-          href={"/"}
-        >
-          отменить
-        </Button>
-        { visible ? <Button color="primary" variant="contained" visible='true' onClick={handlePost}>
-          добавить
-        </Button> : <Button color="primary" variant="contained" visible='false' onClick={updatePost}>
-          обновить
-        </Button> }
-       
-        
+        <Container className={classes.createContent}>
+          <Button
+            color="secondary"
+            variant="contained"
+            className={classes.createButton}
+            href={"/"}
+          >
+            отменить
+          </Button>
+          {visible ? (
+            <Button
+              color="primary"
+              variant="contained"
+              visible="true"
+              onClick={handlePost}
+            >
+              добавить
+            </Button>
+          ) : (
+            <Button
+              color="primary"
+              variant="contained"
+              visible="false"
+              onClick={updatePost}
+            >
+              обновить
+            </Button>
+          )}
+        </Container>
       </Container>
 
       <div className={classes.postsTable}>
@@ -197,66 +214,76 @@ export const AllPost = () => {
           onChange={handleChange}
           aria-label="Vertical tabs example"
           textColor="primary"
+          style={{ overflow: "inherit" }}
         >
           {Object.keys(postsByCity).map((city) => (
-         
-          
-                <Tab
-                  label={city}
-                  value={city}
-                  key={city}
-                 // style={{ color: "red" }}
-                />
- 
-         
+            <Tab
+              label={city}
+              value={city}
+              key={city}
+              // style={{ color: "red" }}
+            />
           ))}
         </Tabs>
 
         {Object.keys(postsByCity).map((city) => (
-          <TabPanel value={tab} index={city} key={city}>
-            {postsByCity[city].map((post) => (
-              <Card key={post._id} className={classes.allCardPost}>
-                <CardContent>
-                  <Box>
-                    <Typography>{post.title}</Typography>
-                   <Typography>{dateFormat(new Date(post.date))}</Typography> 
-                  
-                  </Box>
-                  <Typography
-                    color="textSecondary"
-                    className={classes.allUserPost}
-                  >
-                    {post.city}
-                  </Typography>
-                  <Typography>{post.content}</Typography>
-                </CardContent>
-                <CardActions className={classes.allFooterCardPost}>
-                  <Fab
-                    color="primary"
-                    aria-label="edit"
-                    size="small"
-                    onClick={()=>{setPost(post); setVisible(false)}}
-                  >
-                    <EditIcon />
-                  </Fab>
+          <TabPanel
+            value={tab}
+            index={city}
+            key={city}
+            style={{ height: "50%", color: "green" }}
+          >
+            <Box className={classes.cardActual}>
+              {postsByCity[city].map((post) => (
+                <Card key={post._id} className={classes.cardPost}>
+                  <CardContent>
+                    <Box className={classes.titleCardPost}>
+                      <Typography>{post.title}</Typography>
+                      <Typography>{dateFormat(new Date(post.date))}</Typography>
+                    </Box>
+                    {/* <Typography */}
+                      {/* color="textSecondary" */}
+                      {/* className={classes.userPost} */}
+                    {/* > */}
+                      {/* {post.city} */}
+                    {/* </Typography> */}
+                    <Typography style={{ marginTop: "25px" }}>
+                      {post.content}
+                    </Typography>
+                  </CardContent>
+                  <CardActions className={classes.footerCardPost}>
+                    <Fab
+                      color="primary"
+                      aria-label="edit"
+                      size="small"
+                      onClick={() => {
+                        setPost(post);
+                        setVisible(false);
+                      }}
+                    >
+                      <EditIcon />
+                    </Fab>
 
-                  <Fab
-                    color="secondary"
-                    aria-label="delete"
-                    size="small"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      if (window.confirm(`Удалить данный пост ${post._id} ?`)) {
-                        apis.deletePostById(post._id);
-                        window.location.reload();
-                      }
-                    }}
-                  >
-                    <DeleteIcon />
-                  </Fab>
-                </CardActions>
-              </Card>
-            ))}
+                    <Fab
+                      color="secondary"
+                      aria-label="delete"
+                      size="small"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (
+                          window.confirm(`Удалить данный пост ${post._id} ?`)
+                        ) {
+                          apis.deletePostById(post._id);
+                          window.location.reload();
+                        }
+                      }}
+                    >
+                      <DeleteIcon />
+                    </Fab>
+                  </CardActions>
+                </Card>
+              ))}
+            </Box>
           </TabPanel>
         ))}
       </div>
