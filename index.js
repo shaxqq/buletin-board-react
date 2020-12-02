@@ -2,9 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 const db = require('./db');
-const postRouter = require('./postRouter')
+const router = require('./postRouter')
 require('dotenv').config()
 
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -21,6 +21,6 @@ app.get('/', (req, res) => {
     res.send('message: server start!')
 })
 
-app.use('/api', postRouter)
+app.use('/api', router)
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
