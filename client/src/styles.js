@@ -54,7 +54,6 @@ export const useStyles = makeStyles((theme)=>({
       cardPost: {
         marginBottom: '10px',
         background: '#c8c8c8',
-        margin: '0 0 10px 20px',
       },
       postsTable: {
         flexGrow: 1,
@@ -67,7 +66,14 @@ export const useStyles = makeStyles((theme)=>({
         minWidth: 120,
       },
       cardActual: {
-        height: '50%',
-        
+        padding: '0 25px',
+        display: 'flex',
+        flexDirection: 'column-reverse',
+      },
+      tabColor: {
+        color: 'grey',
+        '&:active': {
+          color: 'red'
+        }
       },
 }))
