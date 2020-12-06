@@ -4,15 +4,17 @@ export const useStyles = makeStyles((theme)=>({
     root: {
         display: 'flex',
         background: '#a5a1a16e',
+        height: '100vh',
         overflow: 'overlay',
-        height: '100vh'
     },
-   
+    rootContainer: {
+     
+    },
     createRoot: {          
           display: "flex",
           flexDirection: 'column',
           width: '80%',
-          marginBottom: '25px'
+          marginBottom: '20px'
       },
       createContent: {
         margin: theme.spacing(2),
@@ -49,16 +51,16 @@ export const useStyles = makeStyles((theme)=>({
       textPost: {
         marginRight: 18,
       },
-      allCardPost: {
-        margin: '0 0 10px 15px',
+      cardPost: {
+        marginBottom: '10px',
         background: '#c8c8c8',
-        
       },
       postsTable: {
         flexGrow: 1,
         display: 'flex',
-        height: 'auto',
-        
+        height: '100%',
+        marginBottom: '20px',
+
       },
       formControl: {
         minWidth: 120,

@@ -116,10 +116,8 @@ export const AllPost = () => {
       }
       setOpen(true);
       setPost(post);
-    //  console.log(post)
       window.setTimeout(() => {
-       
-        window.location.href = "/";
+          window.location.href = "/";
       }, 1500);
       //  console.log(post.content);
     });
@@ -139,20 +137,28 @@ export const AllPost = () => {
     });
   }, []);
 
-  //const forms = text.map((child)=>{console.log(child)})
-  const postsByCity = groupBy(posts, (post) => post.city);
-  //console.log()
-  
-  // console.log(visible);
-   console.log(postsByCity);
-   console.log(posts.length);
-   console.log(Object.keys(postsByCity).map((city)=>{
-     const one = postsByCity[city].length
 
-     console.log(postsByCity[city].length !== 3 &&  <p>
-    {postsByCity[city].length} message
-    
-  </p>)}));
+  useEffect(() => {
+    if (posts.length > localStorage.getItem("count")){
+        console.log(posts.length > localStorage.getItem("count"))
+        let lasti = posts[posts.length -1].city
+        setColor(true)
+        setCount(lasti)
+        localStorage.setItem("count", posts.length)
+    }
+  }, [posts]);
+
+console.log(localStorage.getItem("count"))
+console.log(posts)
+console.log(count)
+console.log(color)
+//  const tabStyle = () => {
+//    {(window.localStorage.getItem("count") < count) ?  setColor(true) :  setColor(false) }
+//  };
+//    console.log(color)
+//
+
+  const postsByCity = groupBy(posts, (post) => post.city);
 
   return (
     <div>
@@ -190,24 +196,36 @@ export const AllPost = () => {
           className={classes.createInputField}
           onChange={changeContent}
         />
-          <Container className={classes.createContent}>
-        <Button
-          color="secondary"
-          variant="contained"
-          className={classes.createButton}
-          href={"/"}
-        >
-          отменить
-        </Button>
-        { visible ? <Button color="primary" variant="contained" visible='true' onClick={handlePost}>
-          добавить
-        </Button> : <Button color="primary" variant="contained" visible='false' onClick={updatePost}>
-          обновить
-        </Button> }      
+        <Container className={classes.createContent}>
+          <Button
+            color="secondary"
+            variant="contained"
+            className={classes.createButton}
+            href={"/"}
+          >
+            отменить
+          </Button>
+          {visible ? (
+            <Button
+              color="primary"
+              variant="contained"
+              visible="true"
+              onClick={handlePost}
+            >
+              добавить
+            </Button>
+          ) : (
+            <Button
+              color="primary"
+              variant="contained"
+              visible="false"
+              onClick={updatePost}
+            >
+              обновить
+            </Button>
+          )}
+        </Container>
       </Container>
-      </Container>
-    
-
       <div className={classes.postsTable}>
         <Tabs
           orientation="vertical"
@@ -216,9 +234,9 @@ export const AllPost = () => {
           onChange={handleChange}
           aria-label="Vertical tabs example"
           textColor="primary"
-          style={{overflow: 'inherit'}}
+          style={{ overflow: "inherit" }}
         >
-          {Object.keys(postsByCity).map((city) => (         
+          {Object.keys(postsByCity).map((city) => (
                 <Tab
                   label={city}
                   value={city}
@@ -230,32 +248,44 @@ export const AllPost = () => {
           ))}
         </Tabs>
         {Object.keys(postsByCity).map((city) => (
-          <TabPanel value={tab} index={city} key={city} >
-            {postsByCity[city].map((post) => (
-              <Card key={post._id} className={classes.allCardPost}>
-                <CardContent>
-                  <Box>
-                    <Typography>{post.title}</Typography>
-                   <Typography>{dateFormat(new Date(post.date))}</Typography> 
-                  
-                  </Box>
-                  <Typography
-                    color="textSecondary"
-                    className={classes.allUserPost}
-                  >
-                    {post.city}
-                  </Typography>
-                  <Typography>{post.content}</Typography>
-                </CardContent>
-                <CardActions className={classes.allFooterCardPost}>
-                  <Fab
-                    color="primary"
-                    aria-label="edit"
-                    size="small"
-                    onClick={()=>{setPost(post); setVisible(false)}}
-                  >
-                    <EditIcon />
-                  </Fab>
+          <TabPanel
+            value={tab}
+            index={city}
+            key={city}
+            style={{ height: "50%", color: "green" }}
+          >
+            <Box className={classes.cardActual}>
+              {postsByCity[city].map((post) => (
+                <Card key={post._id} className={classes.cardPost}>
+                  <CardContent>
+                    <Box className={classes.titleCardPost}>
+                      <Typography>{post.title}</Typography>
+                      <Typography>{dateFormat(new Date(post.date))}</Typography>
+                    </Box>
+                    {/* <Typography */}
+                    {/* color="textSecondary" */}
+                    {/* className={classes.userPost} */}
+                    {/* > */}
+                    {/* {post.city} */}
+                    {/* </Typography> */}
+                    <Typography
+                      style={{ marginTop: "25px", whiteSpace: "pre-wrap" }}
+                    >
+                      {post.content}
+                    </Typography>
+                  </CardContent>
+                  <CardActions className={classes.footerCardPost}>
+                    <Fab
+                      color="primary"
+                      aria-label="edit"
+                      size="small"
+                      onClick={() => {
+                        setPost(post);
+                        setVisible(false);
+                      }}
+                    >
+                      <EditIcon />
+                    </Fab>
 
                     <Fab
                       color="secondary"
@@ -276,7 +306,7 @@ export const AllPost = () => {
                   </CardActions>
                 </Card>
               ))}
-           
+            </Box>
           </TabPanel>
         ))}
       </div>
@@ -288,3 +318,8 @@ export const AllPost = () => {
     </div>
   );
 };
+//   <TextField id="username" label="nickName" onChange={changeName} />
+
+//  { text ? <TabPanel value={0} index={0} /> : null }
+//  { text ? <TabPanel value={1} index={1} /> : null }
+//  { text ? <TabPanel value={2} index={2} /> : null }
