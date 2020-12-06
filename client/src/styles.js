@@ -3,14 +3,16 @@ import { makeStyles } from "@material-ui/core/styles";
 export const useStyles = makeStyles((theme)=>({
     root: {
         display: 'flex',
-        background: '#a5a1a16e'
+        background: '#a5a1a16e',
+        overflow: 'overlay',
+        height: '100vh'
     },
-    rootContainer: {
-        width: '80%',
-    },
+   
     createRoot: {          
           display: "flex",
-          flexDirection: 'column'
+          flexDirection: 'column',
+          width: '80%',
+          marginBottom: '25px'
       },
       createContent: {
         margin: theme.spacing(2),
@@ -44,13 +46,14 @@ export const useStyles = makeStyles((theme)=>({
         marginRight: 18,
       },
       allCardPost: {
-        marginBottom: '10px',
-        background: '#c8c8c8'
+        margin: '0 0 10px 15px',
+        background: '#c8c8c8',
+        
       },
       postsTable: {
         flexGrow: 1,
         display: 'flex',
-        height: 224,
+        height: 'auto',
         
       },
       formControl: {
