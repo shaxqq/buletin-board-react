@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Typography,
   Card,
@@ -59,10 +59,9 @@ export const AllPost = () => {
   const [tab, setTab] = useState("0");
   const [open, setOpen] = useState(false);
   const [visible, setVisible] = useState(true);
+  const [count, setCount] = useState(0);
+  const [color, setColor] = useState(false);
 
-  const badgeVisible = () => {
-   // setVisible(!visible);
-  };
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
@@ -105,7 +104,15 @@ export const AllPost = () => {
     await apis.createPost(post).then(() => {
       if (post.content === "") {
         window.alert("Нужно заполнить все поля");
-        return post;
+        return false;
+      }
+      if (post.title === "") {
+        window.alert("Нужно заполнить все поля");
+        return false;
+      }
+      if (post.city === "") {
+        window.alert("Нужно заполнить все поля");
+        return false;
       }
       setOpen(true);
       setPost(post);
@@ -120,7 +127,7 @@ export const AllPost = () => {
   const updatePost = async () => {
     await apis.updatePostById(post._id, post).then(() => {
       //  console.log(post._id, post);
-        window.location.href = `/`
+      window.location.href = `/`;
     });
   };
 
@@ -151,9 +158,14 @@ export const AllPost = () => {
     <div>
       <Container className={classes.createRoot}>
         <Box className={classes.createInputBox}>
-          <TextField id="title" label="Title" onChange={changeTitle} value={post.title} />
+          <TextField
+            id="title"
+            label="Title"
+            onChange={changeTitle}
+            value={post.title}
+          />
           <FormControl className={classes.formControl}>
-            <InputLabel id="demo-simple-select-label">City </InputLabel>
+            <InputLabel id="demo-simple-select-label">Options </InputLabel>
             <Select
               labelId="city"
               id="city"
@@ -211,11 +223,12 @@ export const AllPost = () => {
                   label={city}
                   value={city}
                   key={city}
-                 // style={{ color: "red" }}
+                  onClick={()=> {setColor(false)}}
+                  className={`tab-link ${+city === +color && count ? 'active' : ''}`}
+                  className={classes.tabColor}
                 />
           ))}
         </Tabs>
-
         {Object.keys(postsByCity).map((city) => (
           <TabPanel value={tab} index={city} key={city} >
             {postsByCity[city].map((post) => (
@@ -244,23 +257,26 @@ export const AllPost = () => {
                     <EditIcon />
                   </Fab>
 
-                  <Fab
-                    color="secondary"
-                    aria-label="delete"
-                    size="small"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      if (window.confirm(`Удалить данный пост ${post._id} ?`)) {
-                        apis.deletePostById(post._id);
-                        window.location.reload();
-                      }
-                    }}
-                  >
-                    <DeleteIcon />
-                  </Fab>
-                </CardActions>
-              </Card>
-            ))}
+                    <Fab
+                      color="secondary"
+                      aria-label="delete"
+                      size="small"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (
+                          window.confirm(`Удалить данный пост ${post._id} ?`)
+                        ) {
+                          apis.deletePostById(post._id);
+                          window.location.reload();
+                        }
+                      }}
+                    >
+                      <DeleteIcon />
+                    </Fab>
+                  </CardActions>
+                </Card>
+              ))}
+           
           </TabPanel>
         ))}
       </div>

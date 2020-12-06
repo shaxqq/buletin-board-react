@@ -29,20 +29,24 @@ export const useStyles = makeStyles((theme)=>({
       createInputField: {
         marginTop: '35px',
       },
-      allUserPost: {
+      userPost: {
         marginBottom: 12,
       },
-      allFooterCardPost: {
+      footerCardPost: {
         display: "flex",
         justifyContent: "flex-end",
       },
-      allCreatePost: {
+      titleCardPost: {
+        display: "flex",
+       justifyContent: 'space-between',
+      },
+      createPost: {
         display: "flex",
         justifyContent: "flex-end",
         alignItems: "center",
         padding: "35px 10px 15px 0",
       },
-      allTextPost: {
+      textPost: {
         marginRight: 18,
       },
       allCardPost: {
@@ -58,5 +62,16 @@ export const useStyles = makeStyles((theme)=>({
       },
       formControl: {
         minWidth: 120,
+      },
+      cardActual: {
+        padding: '0 25px',
+        display: 'flex',
+        flexDirection: 'column-reverse',
+      },
+      tabColor: {
+        color: 'grey',
+        '&:active': {
+          color: 'red'
+        }
       },
 }))
