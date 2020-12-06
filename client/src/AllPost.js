@@ -141,7 +141,7 @@ export const AllPost = () => {
   const items = Object.keys(postsByCity).map((city)=> postsByCity[city].length)
   useEffect(() => {
     
-    if (items > localStorage.getItem("count")){
+    if (items.join() > localStorage.getItem("count")){
       
 
         setColor(true)
@@ -150,12 +150,12 @@ export const AllPost = () => {
     }
   }, [items]);
 
-  console.log(items > localStorage.getItem("count"))
-  console.log(items)
-console.log(localStorage.getItem("count"))
+  console.log('item>loacl',items > localStorage.getItem("count"))
+  console.log('items ', items.join())
+console.log('local ', localStorage.getItem("count"))
 
-console.log(count)
-console.log(color)
+console.log('count ', count)
+console.log('color', color)
 //  const tabStyle = () => {
 //    {(window.localStorage.getItem("count") < count) ?  setColor(true) :  setColor(false) }
 //  };
@@ -163,7 +163,7 @@ console.log(color)
 //
 
  
-  console.log(Object.keys(postsByCity).map((city)=> postsByCity[city].length))
+ // console.log(Object.keys(postsByCity).map((city)=> postsByCity[city].length))
 
   return (
     <div>
@@ -246,11 +246,14 @@ console.log(color)
                   label={city}
                   value={city}
                   key={city}
-                  // onClick={console.log(+city)}
-                  // onClick={console.log(color)}
-                  // onClick={console.log(+count)}
-                  onClick={()=> setColor(false)}
-                  className={`${+city === +color && count ? `${classes.bar1}` : `${classes.bar2}`}`}
+                  onClick={console.log('city', typeof(city))}
+                  onClick={console.log('color', +color)}
+                  onClick={console.log('count', {}, [])}
+                  onClick={console.log('items-', city === Object.keys(items).toString())}
+                  onClick={console.log('items--', items)}
+            //      onClick={console.log('items1', items)}
+                 // onClick={()=> setColor(false)}
+                  className={`${city === +color && Object.keys(items) ? `${classes.bar1}` : `${classes.bar2}`}`}
                   
                   //   className={classes.tabColor}
                 />
