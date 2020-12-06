@@ -250,7 +250,7 @@ console.log('color', color)
                   onClick={console.log('color', +color)}
                   onClick={console.log('count', {}, [])}
                   onClick={console.log('items-', city === Object.keys(items).toString())}
-                  onClick={console.log('items--', items)}
+                  onClick={console.log( 'items--', items )}
             //      onClick={console.log('items1', items)}
                  // onClick={()=> setColor(false)}
                   className={`${city === +color && Object.keys(items) ? `${classes.bar1}` : `${classes.bar2}`}`}
