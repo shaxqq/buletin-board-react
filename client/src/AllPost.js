@@ -242,7 +242,7 @@ console.log(color)
                   value={city}
                   key={city}
                   onClick={()=> {setColor(false)}}
-                  className={`tab-link ${+city === +color && +count ? 'active' : ''}`}
+                  className={`tab-link ${+city === +color && count ? 'active' : ''}`}
                   className={classes.tabColor}
                 />
           ))}
