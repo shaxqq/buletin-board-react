@@ -72,8 +72,24 @@ export const useStyles = makeStyles((theme)=>({
       },
       tabColor: {
         color: 'grey',
-        '&:active': {
+        '& active': {
           color: 'red'
-        }
+        },
+        overflow: "inherit",
       },
+      MuiTab:{
+        textColorPrimary: {
+          color: 'green',
+          '& active': {
+            color: 'red'
+          },
+      }
+      },
+      bar1: {
+        color: 'green',
+      },
+      bar2: {
+        color: 'grey',
+      },
+      
 }))

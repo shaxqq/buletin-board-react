@@ -59,7 +59,7 @@ export const AllPost = () => {
   const [tab, setTab] = useState("0");
   const [open, setOpen] = useState(false);
   const [visible, setVisible] = useState(true);
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState([]);
   const [color, setColor] = useState(false);
 
   const handleClose = (event, reason) => {
@@ -117,7 +117,7 @@ export const AllPost = () => {
       setOpen(true);
       setPost(post);
       window.setTimeout(() => {
-          window.location.href = "/";
+       //   window.location.href = "/";
       }, 1500);
       //  console.log(post.content);
     });
@@ -137,19 +137,23 @@ export const AllPost = () => {
     });
   }, []);
 
-
+  const postsByCity = groupBy(posts, (post) => post.city);
+  const items = Object.keys(postsByCity).map((city)=> postsByCity[city].length)
   useEffect(() => {
-    if (posts.length > localStorage.getItem("count")){
-        console.log(posts.length > localStorage.getItem("count"))
-        let lasti = posts[posts.length -1].city
-        setColor(true)
-        setCount(lasti)
-        localStorage.setItem("count", posts.length)
-    }
-  }, [posts]);
+    
+    if (items > localStorage.getItem("count")){
+      
 
+        setColor(true)
+        setCount(items)
+        localStorage.setItem("count", items)
+    }
+  }, [items]);
+
+  console.log(items > localStorage.getItem("count"))
+  console.log(items)
 console.log(localStorage.getItem("count"))
-console.log(posts)
+
 console.log(count)
 console.log(color)
 //  const tabStyle = () => {
@@ -158,7 +162,8 @@ console.log(color)
 //    console.log(color)
 //
 
-  const postsByCity = groupBy(posts, (post) => post.city);
+ 
+  console.log(Object.keys(postsByCity).map((city)=> postsByCity[city].length))
 
   return (
     <div>
@@ -234,16 +239,20 @@ console.log(color)
           onChange={handleChange}
           aria-label="Vertical tabs example"
           textColor="primary"
-          style={{ overflow: "inherit" }}
+          style={{ overflow: "inherit", }}
         >
           {Object.keys(postsByCity).map((city) => (
                 <Tab
                   label={city}
                   value={city}
                   key={city}
-                  onClick={()=> {setColor(false)}}
-                  className={`tab-link ${+city === +color && count ? 'active' : ''}`}
-                  className={classes.tabColor}
+                  // onClick={console.log(+city)}
+                  // onClick={console.log(color)}
+                  // onClick={console.log(+count)}
+                  onClick={()=> setColor(false)}
+                  className={`${+city === +color && count ? `${classes.bar1}` : `${classes.bar2}`}`}
+                  
+                  //   className={classes.tabColor}
                 />
           ))}
         </Tabs>
