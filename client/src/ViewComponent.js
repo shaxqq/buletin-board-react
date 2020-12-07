@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Typography,
   Card,
@@ -17,12 +17,10 @@ import {
   InputLabel,
   Snackbar,
 } from "@material-ui/core";
-import MuiAlert from "@material-ui/lab/Alert";
 import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
-// import AddIcon from "@material-ui/icons/Add";
 import apis from "./api/api";
-import { useStyles } from "./styles";
+import EditIcon from "@material-ui/icons/Edit";
+import MuiAlert from "@material-ui/lab/Alert";
 
 const Alert = (props) => {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -32,150 +30,42 @@ const TabPanel = ({ children, value, index }) => {
   return <div>{value === index && <div>{children}</div>}</div>;
 };
 
-const groupBy = (xs, fn) => {
-  return xs.reduce(function (rv, x) {
-    (rv[fn(x)] = rv[fn(x)] || []).push(x);
-    return rv;
-  }, {});
-};
-const dateFormat = (date) => {
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  const hour = date.getHours();
-  const minutes = date.getMinutes();
-  const monthString = month >= 10 ? month : `0${month}`;
-  const dayString = day >= 10 ? day : `0${day}`;
-  return `${date.getFullYear()}-${monthString}-${dayString} ${hour}:${minutes}`;
-};
+const ViewComp = (props) => {
+  const {
+    changeTitle,
+    changeName,
+    changeContent,
+    handlePost,
+    updatePost,
+    tab,
+    handleChange,
+    postsByCity,
+    open,
+    dateFormat,
+    visible,
+    post,
+    handleClose,
+    setPost,
+    setVisible,
+    classes,
+    posts
+  } = props;
 
-export const AllPost = () => {
-  const classes = useStyles();
-  const [posts, setPosts] = useState([]);
-  const [post, setPost] = useState({
-    title: "",
-    city: "",
-    content: [],
-  });
-  const [tab, setTab] = useState("0");
-  const [open, setOpen] = useState(false);
-  const [visible, setVisible] = useState(true);
-  const [count, setCount] = useState(0);
-  const [color, setColor] = useState(false);
-
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setOpen(false);
-  };
-  const handleChange = (event, newTab) => {
-    setTab(newTab);
-  };
-  const changeTitle = (e) => {
-    e.persist();
-    setPost((param) => {
-      // console.log(param);
-      return {
-        ...param,
-        title: e.target.value,
-      };
-    });
-  };
-  const changeName = (e) => {
-    e.preventDefault();
-    setPost((param) => {
-      //   console.log(param);
-      return {
-        ...param,
-        city: e.target.value,
-      };
-    });
-  };
-  const changeContent = (e) => {
-    e.persist();
-    setPost((param) => {
-      return {
-        ...param,
-        content: e.target.value,
-      };
-    });
-  };
-  const handlePost = async () => {
-    await apis.createPost(post).then(() => {
-      if (post.content === "") {
-        window.alert("Нужно заполнить все поля");
-        return false;
-      }
-      if (post.title === "") {
-        window.alert("Нужно заполнить все поля");
-        return false;
-      }
-      if (post.city === "") {
-        window.alert("Нужно заполнить все поля");
-        return false;
-      }
-      apis.getAllPost().then((post) => {
-        setPosts(post.data.data);
-        setOpen(true);
-        setPost(()=>{
-          return {
-            title: '',
-            city: "",
-            content: []
-          };
-        });
-      });
-    });
-  };
-  const updatePost = async () => {
-    await apis.updatePostById(post._id, post).then(() => {
-      apis.getAllPost().then((post) => {
-        setPosts(post.data.data)})
-        setVisible(true)
-        setPost(()=>{
-          return {
-            title: '',
-            city: "",
-            content: []
-          };
-        });
-    });
-  };
-
-  // console.log(TabPanel())
-
+  const [not, setNot] = useState(false);
+  const [cit, setCity] = useState(0);
   useEffect(() => {
-    apis.getAllPost().then((post) => {
-      setPosts(post.data.data);
-    });
-  }, []);
-
-  const postsByCity = groupBy(posts, (post) => post.city);
-  const items = Object.keys(postsByCity).map((city)=> postsByCity[city].length)
-
-  useEffect(() => {
-    if (items > localStorage.getItem("count")){
-        setColor(true)
-        setCount(items)
-        localStorage.setItem("count", items)
+    if (posts.length > localStorage.getItem("count")){
+        console.log(posts.length > localStorage.getItem("count"))
+        let lasti = posts[posts.length -1].city
+        console.log(lasti)
+        setNot(true)
+        setCity(lasti)
     }
-  }, [items]);
-
-  console.log('item>loacl',items > localStorage.getItem("count"))
-  console.log('items ', items)
-  console.log('local ', localStorage.getItem("count"))
-
-  console.log('count ', count)
-  console.log('color', color)
-//  const tabStyle = () => {
-//    {(window.localStorage.getItem("count") < count) ?  setColor(true) :  setColor(false) }
-//  };
-//    console.log(color)
-//
- // console.log(Object.keys(postsByCity).map((city)=> postsByCity[city].length))
-
-  return (
-    <div>
+    localStorage.setItem("count", posts.length)
+  }, [posts]);
+console.log(localStorage)
+    return (
+      <div>
       <Container className={classes.createRoot}>
         <Box className={classes.createInputBox}>
           <TextField
@@ -215,7 +105,7 @@ export const AllPost = () => {
             color="secondary"
             variant="contained"
             className={classes.createButton}
-            href={"/"}
+            onClick={localStorage.clear()}
           >
             отменить
           </Button>
@@ -223,7 +113,7 @@ export const AllPost = () => {
             <Button
               color="primary"
               variant="contained"
-              visible="false"
+              visible="true"
               onClick={handlePost}
             >
               добавить
@@ -232,7 +122,7 @@ export const AllPost = () => {
             <Button
               color="primary"
               variant="contained"
-              visible="true"
+              visible="false"
               onClick={updatePost}
             >
               обновить
@@ -240,6 +130,7 @@ export const AllPost = () => {
           )}
         </Container>
       </Container>
+
       <div className={classes.postsTable}>
         <Tabs
           orientation="vertical"
@@ -248,25 +139,20 @@ export const AllPost = () => {
           onChange={handleChange}
           aria-label="Vertical tabs example"
           textColor="primary"
-          style={{ overflow: "inherit", }}
+          style={{ overflow: "inherit" }}
         >
           {Object.keys(postsByCity).map((city) => (
-                <Tab
-                  label={city}
-                  value={city}
-                  key={city}
-                  // onClick={console.log('city', +city)}
-                  // onClick={console.log('color', +color)}
-                  // onClick={console.log( 'items--', items )}
-                  // onClick={console.log('items-', +city === +color && items.map((key)=>items[key]))}
-            //      onClick={console.log('items1', items)}
-                  onClick={()=> setColor(false)}
-                  className={`${+city == +count && color ? `${classes.bar1}` : `${classes.bar2}`}`}
-                  
-                  //   className={classes.tabColor}
-                />
+            <Tab
+              label={city}
+              value={city}
+              key={city}
+              className={`tab-link ${+city === +cit && not? `${classes.bar1}` : ''}`}
+              // style={{ color: "red" }}
+              onClick={()=> setNot(false)}
+            />
           ))}
         </Tabs>
+
         {Object.keys(postsByCity).map((city) => (
           <TabPanel
             value={tab}
@@ -283,14 +169,12 @@ export const AllPost = () => {
                       <Typography>{dateFormat(new Date(post.date))}</Typography>
                     </Box>
                     {/* <Typography */}
-                    {/* color="textSecondary" */}
-                    {/* className={classes.userPost} */}
+                      {/* color="textSecondary" */}
+                      {/* className={classes.userPost} */}
                     {/* > */}
-                    {/* {post.city} */}
+                      {/* {post.city} */}
                     {/* </Typography> */}
-                    <Typography
-                      style={{ marginTop: "25px", whiteSpace: "pre-wrap" }}
-                    >
+                    <Typography style={{ marginTop: "25px" }}>
                       {post.content}
                     </Typography>
                   </CardContent>
@@ -337,4 +221,6 @@ export const AllPost = () => {
       </Snackbar>
     </div>
   );
-};
+}
+
+export { ViewComp };

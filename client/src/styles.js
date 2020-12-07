@@ -86,7 +86,7 @@ export const useStyles = makeStyles((theme)=>({
       }
       },
       bar1: {
-        color: 'green',
+        color: 'red',
       },
       bar2: {
         color: 'grey',
