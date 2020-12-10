@@ -146,8 +146,8 @@ console.log(localStorage)
               label={city}
               value={city}
               key={city}
-              className={`tab-link ${+city === +cit && not? `${classes.bar1}` : ''}`}
-              // style={{ color: "red" }}
+              className={`tab-link ${+city === +cit && not? 'active' : ''}`}
+              // style={{ color: "red" }} `${classes.bar1}`
               onClick={()=> setNot(false)}
             />
           ))}
