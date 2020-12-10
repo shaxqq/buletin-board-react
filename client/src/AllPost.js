@@ -82,7 +82,7 @@ export const AllPost = () => {
       apis.getAllPost().then((post) => {
         setPosts(post.data.data);
       });
-      setOpen(false);
+      
       setPost(() => {
         return {
           title: '',

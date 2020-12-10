@@ -55,15 +55,16 @@ const ViewComp = (props) => {
   const [cit, setCity] = useState(0);
   useEffect(() => {
     if (posts.length > localStorage.getItem("count")){
-    //    console.log(posts.length > localStorage.getItem("count"))
+      //  console.log(posts.length > localStorage.getItem("count"))
         let lasti = posts[posts.length -1].city
-    //    console.log(lasti)
+     //   console.log(lasti)
         setNot(true)
         setCity(lasti)
     }
     localStorage.setItem("count", posts.length)
   }, [posts]);
-// console.log(localStorage)
+ //console.log(localStorage)
+
     return (
       <div>
       <Container className={classes.createRoot}>
@@ -215,7 +216,7 @@ const ViewComp = (props) => {
           </TabPanel>
         ))}
       </div>
-      <Snackbar open={open} autoHideDuration={1000} onClose={handleClose}>
+      <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success">
           Пост добавлен!
         </Alert>
