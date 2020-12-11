@@ -149,7 +149,7 @@ const ViewComp = (props) => {
               value={city}
               key={city}
               className={`tab-link ${+city === +cit && not? `${classes.bar1}` : ''}`}
-              // style={{ color: "red" }} `${classes.bar1}`
+              style={{ width: '250px' }}
               onClick={()=> city === cit ? setNot(false) : ''}
             />
           ))}
