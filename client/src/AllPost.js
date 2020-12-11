@@ -77,6 +77,10 @@ export const AllPost = () => {
         window.alert("Нужно заполнить все поля");
         return post;
       }
+      if (post.city === "") {
+        window.alert("Нужно заполнить все поля");
+        return post;
+      }
       setOpen(true);
       setPost(post);
       apis.getAllPost().then((post) => {
