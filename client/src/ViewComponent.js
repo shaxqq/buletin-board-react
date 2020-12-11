@@ -71,7 +71,7 @@ const ViewComp = (props) => {
         <Box className={classes.createInputBox}>
           <TextField
             id="title"
-            label="Title"
+            label="Nickname"
             onChange={changeTitle}
             value={post.title}
           />
@@ -84,10 +84,10 @@ const ViewComp = (props) => {
               onChange={changeName}
               style={{ paddingRight: "1px" }}
             >
-              <MenuItem value={`0`}>option-0</MenuItem>
-              <MenuItem value={`1`}>option-1</MenuItem>
-              <MenuItem value={`2`}>option-2</MenuItem>
-              <MenuItem value={`3`}>option-3</MenuItem>
+              <MenuItem value={`Предложения по обучению`}>Предложения по обучению</MenuItem>
+              <MenuItem value={`Предложения по КЛН`}>Предложения по КЛН</MenuItem>
+              <MenuItem value={`Общие предложения`}>Общие предложения</MenuItem>
+              <MenuItem value={`Решённые/Отклонены`}>Решённые/Отклонены</MenuItem>
             </Select>
           </FormControl>
         </Box>
