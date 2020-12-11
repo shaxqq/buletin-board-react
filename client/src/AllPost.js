@@ -26,7 +26,7 @@ export const AllPost = () => {
     city: "",
     content: [],
   });
-  const [tab, setTab] = useState("0");
+  const [tab, setTab] = useState('Предложения по обучению');
   const [open, setOpen] = useState(false);
   const [visible, setVisible] = useState(true);
 
@@ -86,7 +86,7 @@ export const AllPost = () => {
       setPost(() => {
         return {
           title: '',
-          city: "",
+          city: '',
           content: []
         };
       });
@@ -100,7 +100,7 @@ export const AllPost = () => {
         setPost(()=>{
           return {
             title: '',
-            city: "",
+            city: '',
             content: []
           };
         });
