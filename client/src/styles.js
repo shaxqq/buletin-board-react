@@ -142,6 +142,9 @@ export const useStyles = makeStyles((theme)=>({
         overflow: "hidden",
         padding: theme.spacing(0, 3),
       },
+      switchesList:{
+        padding: '15px',
+      },
       paper: {
         margin: `${theme.spacing(1)}px auto`,
         padding: theme.spacing(2),

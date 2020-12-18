@@ -118,13 +118,13 @@ export const Switches = () => {
         animateHeight
       >
         <Container maxWidth="lg">
-          <Typography component="span">{listOptic}</Typography>
+          <Typography component="span" className={classes.switchesList}>{listOptic}</Typography>
         </Container>
         <Container maxWidth="lg">
-          <Typography component="span">{listNonOptic}</Typography>
+          <Typography component="span" className={classes.switchesList}>{listNonOptic}</Typography>
         </Container>
         <Container maxWidth="lg" >
-          <Typography component="span">{listGateway}</Typography>
+          <Typography component="span" className={classes.switchesList}>{listGateway}</Typography>
         </Container>
       </SwipeableViews>
     </div>

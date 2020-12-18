@@ -160,7 +160,7 @@
             "content": [
                 {
                     "name": "Кар дачи",
-                    "command": "MX960_G50 10.222.222.250 - вход по SSH"
+                    "command": "MX - вход по SSH"
                 },
                 {
                     "name": "Посмотреть ip dhcp сервера",
@@ -176,18 +176,6 @@
                     "command1": "show ethernet-switching table vlan # - маки по влану",
                     "command2": "show bridge mac-table vlan-id # - маки по влану",
                     "command3": "show bridge domain interface xe-2/0/0.0 - маки на порту"
-                },
-                {
-                    "name": "Тп Korolenko ip",
-                    "command": "10.222.6.3"
-                },
-                {
-                    "name": "retiklum1",
-                    "command": "10.222.222.103"
-                },
-                {
-                    "name": "porica3# (retroville)",
-                    "command": "172.18.130.1"
                 }
             ]
         }

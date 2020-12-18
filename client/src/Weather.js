@@ -28,8 +28,8 @@ export const Weather = () => {
        })
        .catch((err) => console.log(err));
    }, []);
-   console.log(weather)
-console.log(Wether)
+  // console.log(weather)
+//console.log(Wether)
 
   //   const weatherIconn = ()=>{
   //     if (weather){

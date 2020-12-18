@@ -58,10 +58,10 @@ const ViewComp = (props) => {
  
   useEffect(() => {
     if (posts.length > localStorage.getItem("count")){
-        console.log(posts.length > localStorage.getItem("count"))
+   //     console.log(posts.length > localStorage.getItem("count"))
         let lasti = posts[posts.length -1].city
-        console.log(lasti)
-        console.log(posts)
+        // console.log(lasti)
+        // console.log(posts)
    //     console.log(postsByCity)
    //     console.log(posts[posts.length -1])
    //     console.log(Object.keys(postsByCity).map((city) => postsByCity[city][city.length]))
@@ -70,7 +70,7 @@ const ViewComp = (props) => {
     }
     localStorage.setItem("count", posts.length)
   }, [posts]);
- console.log(localStorage)
+ //console.log(localStorage)
 
     return (
       <div>
