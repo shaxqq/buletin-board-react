@@ -58,7 +58,6 @@ const ViewComp = (props) => {
  
   useEffect(() => {
     if (posts.length > localStorage.getItem("count")){
-<<<<<<< HEAD
    //     console.log(posts.length > localStorage.getItem("count"))
         let lasti = posts[posts.length -1].city
         // console.log(lasti)
@@ -66,11 +65,6 @@ const ViewComp = (props) => {
    //     console.log(postsByCity)
    //     console.log(posts[posts.length -1])
    //     console.log(Object.keys(postsByCity).map((city) => postsByCity[city][city.length]))
-=======
-    //    console.log(posts.length > localStorage.getItem("count"))
-        let lasti = posts[posts.length -1].city
-   //     console.log(lasti)
->>>>>>> b5c683cfa0a3821abcbd973c0809227c1b803e2c
         setNot(true)
         setCity(lasti)
     }
@@ -97,17 +91,10 @@ const ViewComp = (props) => {
               onChange={changeName}
               style={{ paddingRight: "1px" }}
             >
-<<<<<<< HEAD
               <MenuItem value={'Предложения по обучению'}>Предложения по обучению</MenuItem>
               <MenuItem value={'Предложения по КЛН'}>Предложения по КЛН</MenuItem>
               <MenuItem value={'Общие предложения'}>Общие предложения</MenuItem>
               <MenuItem value={'Решённые/Отклонены'}>Решённые/Отклонены</MenuItem>
-=======
-              <MenuItem value={`Предложения по обучению`}>Предложения по обучению</MenuItem>
-              <MenuItem value={`Предложения по КЛН`}>Предложения по КЛН</MenuItem>
-              <MenuItem value={`Общие предложения`}>Общие предложения</MenuItem>
-              <MenuItem value={`Решённые/Отклонены`}>Решённые/Отклонены</MenuItem>
->>>>>>> b5c683cfa0a3821abcbd973c0809227c1b803e2c
             </Select>
           </FormControl>
         </Box>
@@ -169,16 +156,11 @@ const ViewComp = (props) => {
               value={city}
               key={city}
               className={`tab-link ${+city === +cit && not? `${classes.bar1}` : ''}`}
-<<<<<<< HEAD
                style={{ width: '250px' }}
               onClick={()=> city === cit ? setNot(false) : ''}
              // onClick={console.log(city)}
              // onClick={console.log(cit)}
 
-=======
-              style={{ width: '250px' }}
-              onClick={()=> city === cit ? setNot(false) : ''}
->>>>>>> b5c683cfa0a3821abcbd973c0809227c1b803e2c
             />
           ))}
         </Tabs>
@@ -204,11 +186,7 @@ const ViewComp = (props) => {
                     {/* > */}
                       {/* {post.city} */}
                     {/* </Typography> */}
-<<<<<<< HEAD
                     <Typography style={{ marginTop: "25px", whiteSpace: 'pre-wrap' }}>
-=======
-                    <Typography style={{ marginTop: "25px", whiteSpace: 'pre-line' }}>
->>>>>>> b5c683cfa0a3821abcbd973c0809227c1b803e2c
                       {post.content}
                     </Typography>
                   </CardContent>
