@@ -19,7 +19,7 @@ export const Weather = () => {
 
  const Wether = useEffect(() => {
      fetch(
-       "https://api.openweathermap.org/data/2.5/weather?q=kyiv&units=metric&appid=d9f34115fe991c7986c7637f776adc28"
+       "https://api.openweathermap.org/data/2.5/weather?q=kyiv&lang=ru&units=metric&appid=d9f34115fe991c7986c7637f776adc28"
      )
        .then((res) => {
          if (res.ok) {
