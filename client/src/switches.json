@@ -5,8 +5,8 @@
             "title": "BDCOM",
             "content": [
                 {
-                    "name": "Сложить",
-                    "command": "epon onu port 1 ctc shutdown"
+                    "name": "Сложить / Поднять",
+                    "command": "epon onu port 1 ctc shutdown / no epon onu port 1 ctc shutdown"
                 },
                 {
                     "name": "Cтатика pon",
