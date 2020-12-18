@@ -1,0 +1,195 @@
+{
+    "optic":[
+        {
+            "id": 1,
+            "title": "BDCOM",
+            "content": [
+                {
+                    "name": "Сложить",
+                    "command": "epon onu port 1 ctc shutdown"
+                },
+                {
+                    "name": "Cтатика pon",
+                    "command": "ip source binding (mac) (ip) interface EPON0/# vlan #"
+                },
+                {
+                    "name": "Удалить ону с ветки",
+                    "command": "конфиг, заходим на ветку - (узнаём мак онухи) no epon bind-onu sequence (порядковый номер ону( 1-64))"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "title": "BDCOM-stels",
+            "description": "ge5 - 1 порт",
+            "content": [
+                {
+                    "name": "Мак на порту",
+                    "command": "show olt 1 mac-address-table #"
+                },
+                {
+                    "name": "Активные/не активные онухи",
+                    "command": "show olt 1 all-onu-info"
+                },
+                {
+                    "name": "Ребут порта",
+                    "command": "(olt-№/onu-№)# ctc reboot"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "title": "Quidway",
+            "content": [
+                {
+                    "name": "Включаем/отключаем правила привязки",
+                    "command": "заходим на порт - undo ip source check user-bind enable"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "title": "Raisecom",
+            "content": [
+                {
+                    "name": "порт 1gb в 100",
+                    "command": "int port#/ sfp detect-mode force-100base-x"
+                },
+                {
+                    "name": "Посмотреть loop",
+                    "command": "sh interf loopback detect"
+                }
+                
+            ]
+        },
+        {
+            "id": 5,
+            "title": "FoxGate",
+            "content": [
+                {
+                    "name": "Зайти на указанные порты",
+                    "command": "interface range ethernet 0/0/# to ethernet 0/0/#"
+                },
+                {
+                    "name": "порт 1gb в 100",
+                    "command": "на порту - phystate 100base-fx"
+                }
+                
+            ]
+        }
+    ],
+    "nonOptic": [
+        {
+            "id": 1,
+            "title": "Dlink",
+            "content": [
+                {
+                    "name": "Трафик (3526)",
+                    "command": "show packet ports #"
+                },
+                {
+                    "name": "Приоритет по вланам",
+                    "command": "config gvrp (порт) state disable ingress_checking enable acceptable_frame admit_all pvid #",
+                    "command1": "config port_vlan (#port) pvid (#vlan)"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "title": "Linksys",
+            "content": [
+                {
+                    "name": "Удалить acl",
+                    "command": "no service-acl input"
+                },
+                {
+                    "name": "Удалить влан по умолчанию",
+                    "command": "switchport (general/trunk/access) allowed vlan remove all"
+                },
+                {
+                    "name": "Если 2 абонента с 1 свича не пингуют один одного",
+                    "command": "во влане пишем - no switchport protected-port fastethernet"
+                },
+                {
+                    "name": "Лаги/цпу",
+                    "command": "попробовать - config/no ip igmp snooping"
+                },
+                {
+                    "name": "от вредного трафика (на крайняк) - порт протектет включить и acl",
+                    "command": "console(config)# можно и на порт",
+                    "command1": "ip access-list (название)",
+                    "command2": "permit any (ip абонента) 0.0.0.0 any",
+                    "command3": "permit any any (ip абонента) 0.0.0.0",
+                    "command4": "deny any any any",
+                    "command5": "exit",
+                    "command6": "и добавляем console(config-if)# service-acl input (название)"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "title": "ZTE",
+            "content": [
+                {
+                    "name": "Cтатус линки",
+                    "command": "sh port 1-24 br"
+                },
+                {
+                    "name": "Если прокинут ДХЦП конфиг и нужно статику",
+                    "command": "удаляем - set dhcp ip-source-guard del port [номер порта]"
+                },
+                {
+                    "name": "Если есть комбо порты и нужно поменять в нужныное нам состояние",
+                    "command": "set port 25-28 work-mode cooper|fiber|auto"
+                },
+                {
+                    "name": "acl",
+                    "command": "config acl basic number #",
+                    "command1": "rule # permit (ip) (маска)",
+                    "command2": "rule 500 deny any",
+                    "command3": "exit",
+                    "command4": "set port # acl # enable"
+                }
+            ]
+        }
+    ],
+    "gateway": [
+        {
+            "id": 1,
+            "title": "Gateway",
+            "content": [
+                {
+                    "name": "Кар дачи",
+                    "command": "MX960_G50 10.222.222.250 - вход по SSH"
+                },
+                {
+                    "name": "Посмотреть ip dhcp сервера",
+                    "command": "sh running-config interface vlan#"
+                },
+                {
+                    "name": "Логи zte",
+                    "command": "sh loggin alarm"
+                },
+                {
+                    "name": "jun pyton3",
+                    "command": "show bridge mac-table | match (мак) - просмотр мака",
+                    "command1": "show ethernet-switching table vlan # - маки по влану",
+                    "command2": "show bridge mac-table vlan-id # - маки по влану",
+                    "command3": "show bridge domain interface xe-2/0/0.0 - маки на порту"
+                },
+                {
+                    "name": "Тп Korolenko ip",
+                    "command": "10.222.6.3"
+                },
+                {
+                    "name": "retiklum1",
+                    "command": "10.222.222.103"
+                },
+                {
+                    "name": "porica3# (retroville)",
+                    "command": "172.18.130.1"
+                }
+            ]
+        }
+    ]
+}

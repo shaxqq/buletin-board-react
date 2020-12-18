@@ -52,12 +52,19 @@ const ViewComp = (props) => {
   } = props;
 
   const [not, setNot] = useState(false);
-  const [cit, setCity] = useState(0);
+  const [cit, setCity] = useState('');
+  //const las = Object.keys(postsByCity).map((city) => postsByCity[city][city.length -1])
+  //const las2 = las.map((post)=> post)
+ 
   useEffect(() => {
     if (posts.length > localStorage.getItem("count")){
         console.log(posts.length > localStorage.getItem("count"))
         let lasti = posts[posts.length -1].city
         console.log(lasti)
+        console.log(posts)
+   //     console.log(postsByCity)
+   //     console.log(posts[posts.length -1])
+   //     console.log(Object.keys(postsByCity).map((city) => postsByCity[city][city.length]))
         setNot(true)
         setCity(lasti)
     }
@@ -71,7 +78,7 @@ const ViewComp = (props) => {
         <Box className={classes.createInputBox}>
           <TextField
             id="title"
-            label="Title"
+            label="Nickname"
             onChange={changeTitle}
             value={post.title}
           />
@@ -84,10 +91,10 @@ const ViewComp = (props) => {
               onChange={changeName}
               style={{ paddingRight: "1px" }}
             >
-              <MenuItem value={`0`}>option-0</MenuItem>
-              <MenuItem value={`1`}>option-1</MenuItem>
-              <MenuItem value={`2`}>option-2</MenuItem>
-              <MenuItem value={`3`}>option-3</MenuItem>
+              <MenuItem value={'Предложения по обучению'}>Предложения по обучению</MenuItem>
+              <MenuItem value={'Предложения по КЛН'}>Предложения по КЛН</MenuItem>
+              <MenuItem value={'Общие предложения'}>Общие предложения</MenuItem>
+              <MenuItem value={'Решённые/Отклонены'}>Решённые/Отклонены</MenuItem>
             </Select>
           </FormControl>
         </Box>
@@ -149,8 +156,11 @@ const ViewComp = (props) => {
               value={city}
               key={city}
               className={`tab-link ${+city === +cit && not? `${classes.bar1}` : ''}`}
-              // style={{ color: "red" }} `${classes.bar1}`
-              onClick={()=> setNot(false)}
+               style={{ width: '250px' }}
+              onClick={()=> city === cit ? setNot(false) : ''}
+             // onClick={console.log(city)}
+             // onClick={console.log(cit)}
+
             />
           ))}
         </Tabs>

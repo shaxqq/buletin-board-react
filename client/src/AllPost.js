@@ -26,7 +26,7 @@ export const AllPost = () => {
     city: "",
     content: [],
   });
-  const [tab, setTab] = useState("0");
+  const [tab, setTab] = useState('Предложения по обучению');
   const [open, setOpen] = useState(false);
   const [visible, setVisible] = useState(true);
 
@@ -77,6 +77,10 @@ export const AllPost = () => {
         window.alert("Нужно заполнить все поля");
         return post;
       }
+      if (post.city === "") {
+        window.alert("Нужно заполнить все поля");
+        return post;
+      }
       setOpen(true);
       setPost(post);
       apis.getAllPost().then((post) => {
@@ -86,7 +90,7 @@ export const AllPost = () => {
       setPost(() => {
         return {
           title: '',
-          city: "",
+          city: '',
           content: []
         };
       });
@@ -100,7 +104,7 @@ export const AllPost = () => {
         setPost(()=>{
           return {
             title: '',
-            city: "",
+            city: '',
             content: []
           };
         });
