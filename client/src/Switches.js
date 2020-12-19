@@ -8,11 +8,10 @@ import {
   AppBar,
   Tabs,
   Tab,
-  Box,
 } from "@material-ui/core";
-import SwipeableViews from "react-swipeable-views"
-import { useTheme } from "@material-ui/core/styles"
-import { useStyles } from "./styles"
+import SwipeableViews from "react-swipeable-views";
+import { useTheme } from "@material-ui/core/styles";
+import { useStyles } from "./styles";
 
 export const Switches = () => {
   const classes = useStyles();
@@ -23,11 +22,11 @@ export const Switches = () => {
     const childList = item.content.map((childItem) => {
       return (
         <Paper className={classes.paper} key={childItem.name}>
-          <Grid container justify='space-between'>
-            <Grid >
-              <Typography color='secondary'>{childItem.name}</Typography>
+          <Grid container justify="space-between">
+            <Grid>
+              <Typography color="secondary">{childItem.name}</Typography>
             </Grid>
-            <Grid container >
+            <Grid container>
               <Typography>{childItem.command}</Typography>
               <Typography>{childItem.command1}</Typography>
               <Typography>{childItem.command2}</Typography>
@@ -40,19 +39,25 @@ export const Switches = () => {
         </Paper>
       );
     });
-    return <div key={item.id}><Typography className={classes.title}>{item.title}</Typography>
-    <Typography className={classes.titleDesc} color='textSecondary'>{item.description}</Typography>
-    {childList}</div>;
+    return (
+      <div key={item.id}>
+        <Typography className={classes.title}>{item.title}</Typography>
+        <Typography className={classes.titleDesc} color="textSecondary">
+          {item.description}
+        </Typography>
+        {childList}
+      </div>
+    );
   });
   const listNonOptic = switches.nonOptic.map((item) => {
     const childList = item.content.map((childItem) => {
       return (
         <Paper className={classes.paper} key={childItem.name}>
-          <Grid container justify='space-between'>
-            <Grid >
-              <Typography color='secondary'>{childItem.name}</Typography>
+          <Grid container justify="space-between">
+            <Grid>
+              <Typography color="secondary">{childItem.name}</Typography>
             </Grid>
-            <Grid container direction='column'>
+            <Grid container direction="column">
               <Typography>{childItem.command}</Typography>
               <Typography>{childItem.command1}</Typography>
               <Typography>{childItem.command2}</Typography>
@@ -65,20 +70,23 @@ export const Switches = () => {
         </Paper>
       );
     });
-    return <div key={item.id}><Typography className={classes.title}>{item.title}</Typography>
-    
-    {childList}</div>;
+    return (
+      <div key={item.id}>
+        <Typography className={classes.title}>{item.title}</Typography>
+
+        {childList}
+      </div>
+    );
   });
   const listGateway = switches.gateway.map((item) => {
-
     const childList = item.content.map((childItem) => {
       return (
         <Paper className={classes.paper} key={childItem.name}>
-          <Grid container justify='space-between'>
+          <Grid container justify="space-between">
             <Grid>
-              <Typography color='secondary'>{childItem.name}</Typography>
+              <Typography color="secondary">{childItem.name}</Typography>
             </Grid>
-            <Grid container >
+            <Grid container direction="column">
               <Typography>{childItem.command}</Typography>
               <Typography>{childItem.command1}</Typography>
               <Typography>{childItem.command2}</Typography>
@@ -91,7 +99,12 @@ export const Switches = () => {
         </Paper>
       );
     });
-    return <div key={item.id}><Typography className={classes.title}>{item.title}</Typography>{childList}</div>;
+    return (
+      <div key={item.id}>
+        <Typography className={classes.title}>{item.title}</Typography>
+        {childList}
+      </div>
+    );
   });
 
   return (
@@ -118,13 +131,19 @@ export const Switches = () => {
         animateHeight
       >
         <Container maxWidth="lg">
-          <Typography component="span" className={classes.switchesList}>{listOptic}</Typography>
+          <Typography component="span" className={classes.switchesList}>
+            {listOptic}
+          </Typography>
         </Container>
         <Container maxWidth="lg">
-          <Typography component="span" className={classes.switchesList}>{listNonOptic}</Typography>
+          <Typography component="span" className={classes.switchesList}>
+            {listNonOptic}
+          </Typography>
         </Container>
-        <Container maxWidth="lg" >
-          <Typography component="span" className={classes.switchesList}>{listGateway}</Typography>
+        <Container maxWidth="lg">
+          <Typography component="span" className={classes.switchesList}>
+            {listGateway}
+          </Typography>
         </Container>
       </SwipeableViews>
     </div>
