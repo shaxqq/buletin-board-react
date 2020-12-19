@@ -14,12 +14,10 @@ export const App = () => {
       <Navbar />
       <div className={classes.rootContent}>
         <Container className={classes.rootContainer}>
-
             <Switch>
               <Route path="/" component={AllPost} exact />
               <Route path="/switches" component={Switches} />
             </Switch>
-
         </Container>
       </div>
     </div>
