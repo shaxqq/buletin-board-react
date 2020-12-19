@@ -78,7 +78,7 @@ export const Switches = () => {
             <Grid>
               <Typography color='secondary'>{childItem.name}</Typography>
             </Grid>
-            <Grid container >
+            <Grid container direction='column'>
               <Typography>{childItem.command}</Typography>
               <Typography>{childItem.command1}</Typography>
               <Typography>{childItem.command2}</Typography>
