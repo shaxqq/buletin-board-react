@@ -19,7 +19,7 @@ export const Weather = () => {
 
  const Wether = useEffect(() => {
      fetch(
-       "http://api.openweathermap.org/data/2.5/weather?q=kyiv&units=metric&appid=d9f34115fe991c7986c7637f776adc28"
+       "https://api.openweathermap.org/data/2.5/weather?q=kyiv&lang=ru&units=metric&appid=d9f34115fe991c7986c7637f776adc28"
      )
        .then((res) => {
          if (res.ok) {
@@ -50,7 +50,7 @@ export const Weather = () => {
           <Container id={weather.id}>
             <Typography color="secondary" variant="overline">
               {weather.name} {`${Math.round(weather.main.temp)}°C`}{" "}
-              {weather.weather[0].main}
+              {weather.weather[0].description}
             </Typography>
           </Container>
         </div>
