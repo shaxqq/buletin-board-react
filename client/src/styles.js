@@ -64,7 +64,9 @@ export const useStyles = makeStyles((theme)=>({
         display: 'flex',
         height: '100%',
         marginBottom: '20px',
-
+        [theme.breakpoints.down("xs", "sm", "md")]: {
+          flexDirection: 'column',
+        },
       },
       formControl: {
         minWidth: 120,
