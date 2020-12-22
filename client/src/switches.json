@@ -176,6 +176,13 @@
                     "command1": "show ethernet-switching table vlan # - маки по влану",
                     "command2": "show bridge mac-table vlan-id # - маки по влану",
                     "command3": "show bridge domain interface xe-2/0/0.0 - маки на порту"
+                },
+                {
+                    "name": "DHCPLOG",
+                    "command": "windows - в гугле 'nc.exe download', скачиваем и разархивируем в c/wind/system32",
+                    "command1": "команда - nc.exe 'ip' 9998 | findstr 'mac'",
+                    "command2": "linux",
+                    "command3": "команда - nc 'ip' 9998 | grap 'mac'"
                 }
             ]
         }
