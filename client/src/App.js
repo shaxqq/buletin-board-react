@@ -5,6 +5,7 @@ import { Route } from "react-router-dom";
 import { Box, Container } from "@material-ui/core";
 import { Navbar } from "./Navbar";
 import { Switches } from "./Switches";
+import { Descriptions } from "./Descriptions";
 import { useStyles } from "./styles";
 
 
@@ -17,6 +18,7 @@ export const App = () => {
         <Container className={classes.rootContainer}>
           <Route path="/" component={AllPost} exact />
           <Route path='/switches' component={Switches} />
+          <Route path='/descriptions' component={Descriptions} />
         </Container>
       </div>
     </div>

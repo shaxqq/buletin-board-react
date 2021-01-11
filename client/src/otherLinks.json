@@ -1,0 +1,144 @@
+{
+    "links": [
+        {
+        "id": 1,
+        "url": "https://docs.google.com/spreadsheets/d/1zkqlgAonok3w0wzSuGkvZM0if-7F-o8oN5f9PuHoKko/edit#gid=0 -",
+        "content": "Траблы",
+        "color": "secondary"
+    },
+    {
+        "id": 2,
+        "url": "https://vd-rr.o3.ua/agc_areon/vicidial.php",
+        "content": "Vichidial",
+        "color": "textPrimary"
+    },
+    {
+        "id": 3,
+        "url": "https://vd-rr.o3.ua/vicidial/admin.php",
+        "content": "Vichidial admin",
+        "color": "textPrimary"
+    },
+    {
+        "id": 4,
+        "url": "http://100.64.48.4:8080/ViciDialReports/",
+        "content": "Reportsvichi 4023",
+        "color": "textPrimary"
+    },
+    {
+        "id":5,
+        "url": "https://docs.google.com/spreadsheets/d/1J8mvVbBYCA1bCZ9f-BMR_bCMzRon8fwI0KwB80R8v-w/edit#gid=567880490",
+        "content": "Отработки",
+        "color": "primary"
+    },
+    {
+        "id":6,
+        "url": "https://docs.google.com/document/d/1d8C2Onnd29sRfdZMOblMIxGsR5idMIuWbT0jMaM_NdQ/edit",
+        "content": "PK",
+        "color": "primary"
+    },
+    {
+        "id":7,
+        "url": "https://o3.ua/cms/index.php?plg=domain_manage&cmd=edit&arg[domain_id]=313",
+        "content": "Бобровица",
+        "color": "secondary"
+    },
+    {
+        "id":8,
+        "url": "https://o3.ua/cms/index.php?plg=domain_manage&cmd=edit&arg[domain_id]=4",
+        "content": "Бровары",
+        "color": "secondary"
+    },
+    {
+        "id":9,
+        "url": "https://o3.ua/cms/index.php?plg=domain_manage&cmd=edit&arg[domain_id]=2",
+        "content": "Днепр",
+        "color": "secondary"
+    },
+    {
+        "id":10,
+        "url": "https://o3.ua/cms/index.php?plg=domain_manage&cmd=edit&arg[domain_id]=11",
+        "content": "Житомир",
+        "color": "secondary"
+    },
+    {
+        "id":11,
+        "url": "https://o3.ua/cms/index.php?plg=domain_manage&cmd=edit&arg[domain_id]=14",
+        "content": "Кривой рог",
+        "color": "secondary"
+    },
+    {
+        "id":12,
+        "url": "https://o3.ua/cms/index.php?plg=domain_manage&cmd=edit&arg[domain_id]=7",
+        "content": "Львов",
+        "color": "secondary"
+    },
+    {
+        "id":13,
+        "url": "https://o3.ua/cms/index.php?plg=domain_manage&cmd=edit&arg[domain_id]=8",
+        "content": "Мелитополь",
+        "color": "secondary"
+    },
+    {
+        "id":14,
+        "url": "https://o3.ua/cms/index.php?plg=domain_manage&cmd=edit&arg[domain_id]=319",
+        "content": "Острог",
+        "color": "secondary"
+    },
+    {
+        "id":15,
+        "url": "https://o3.ua/cms/index.php?plg=domain_manage&cmd=edit&arg[domain_id]=318",
+        "content": "Славута",
+        "color": "secondary"
+    },
+    {
+        "id":16,
+        "url": "https://o3.ua/cms/index.php?plg=domain_manage&cmd=edit&arg[domain_id]=47",
+        "content": "Акимовка",
+        "color": "secondary"
+    }
+    ],
+    "useful": [
+        {
+        "id": 7,
+        "url": "http://noc.freenet.com.ua/switch/",
+        "content": "Генератор конфига (duty/support)",
+        "color": "textPrimary"
+    },
+    {
+        "id": 8,
+        "url": "https://billing-web.o3.ua/Mounters/",
+        "content": "Поиск абонента (номер в ssid биллинга)",
+        "color": "textPrimary"
+    },
+    {
+        "id": 9,
+        "url": "https://uablacklist.net/#",
+        "content": "Заблоченые сайты",
+        "color": "textPrimary"
+    },
+    {
+        "id": 10,
+        "url": "http://100.127.246.76/cacti/",
+        "content": "Канал (duty/Support1)",
+        "color": "textPrimary"
+    },
+    {
+        "id": 11,
+        "url": "http://mon.o3.ua",
+        "content": "Топология MON",
+        "color": "textPrimary"
+    },
+    {
+        "id": 12,
+        "url": "lg.retn.net",
+        "content": "ping/world",
+        "color": "textPrimary"
+    },
+    {
+        "content": "http://preview.themeforest.net/item/desmond-resume-cv-html-template/full_screen_preview/15956797?_ga=2.96434588.1237476589.1601389060-1975235827.1599310110"
+    },
+    {
+        "content": "http://preview.themeforest.net/item/difference-cvresume-template/full_screen_preview/15368490?_ga=2.95965596.1237476589.1601389060-1975235827.1599310110"
+    }
+    ]
+}
