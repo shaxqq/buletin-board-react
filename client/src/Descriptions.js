@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios"
 import {
   Box,
   Collapse,
@@ -10,17 +9,13 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Typography,
   Paper,
   TextField,
 } from "@material-ui/core";
-// import contentLinks from "./contentLinks.json";
-// import SwipeableViews from "react-swipeable-views";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import { useTableSearch } from "./searchTabDesc"
-
+import { useTableSearch } from "./searchTabDesc";
 
 const useRowStyles = makeStyles({
   root: {
@@ -29,8 +24,7 @@ const useRowStyles = makeStyles({
     },
   },
 });
-
-function createData(id, name, description) {
+const createData = (id, name, description) => {
   return {
     id,
     name,
@@ -38,27 +32,51 @@ function createData(id, name, description) {
   };
 }
 const rows = [
-  createData(1, "раздаёт", "2020-01-01"),
-  createData(2, "подмена", "2020-01-02"),
-  createData(3, "флап"),
-  createData(4, "Cupcake"),
-  createData(5, "Gingerbread"),
-  createData(6, "Gingerbread"),
+  createData(
+    1,
+    "razdaet",
+    "Поднять порт / посмотреть сколько маков на порту (нужен 1, если больше: роутер - проверяем куда подключен кабель, настройки. на прямую - настройки, вирусы ) / пере загрузить соседа и посмтреть пере получит ли он свои настройки / при необходимости проверить натройки на оборудовании клиента / если все ок удаляем деск. сохраняем конфиг"
+  ),
+  createData(
+    2,
+    "podmena",
+    "Проверяем настройки на оборудовании клиента / поднимаем порт / смотрим arp / если все данные соответствуют (ip/mac), удаляем деск. сохраняем конфиг"
+  ),
+  createData(
+    3,
+    "flapp",
+    "Смотрим log (действительно ли часто падал линк) / смотрим когда сложили / смотрим uptime свитча (возможно свитч бутнулся, а кто-то не сохраняет конфиги) / если клиент возле оборудования и сможет его отключить поднимаем мониторим будут ли падения линка / если так же флапает ложим оратно и составляем заявку / если не флапает удаляем деск. сохраняем конфиг"
+  ),
+  createData(
+    4,
+    "flood (broadcast, unicast, multicast)",
+    "Проверить настройки на оборудовании клиента / на свитче сможем посмотреть только соответствующую статистику вх./вых. пакетов по линку / остальное смотреться на узле, если все ок удаляем деск. сохраняем конфиг"
+  ),
+  createData(
+    5,
+    "flood (ipv6)",
+    "Отключить ipv6 на оборудовании клиента / поднять порт и если D-link в логах могут показыватся соответствующие дропы / остальное смотреться на узле, если все ок удаляем деск. сохраняем конфиг"
+  ),
+  createData(
+    6,
+    "flood (arp)",
+    "Проверить настройки на оборудовании клиента / проверить на оборудование на вирусы / остальное смотрится на узле / если все ок удаляем деск. сохраняем конфиг"
+  ),
+  createData(
+    7,
+    "vstraivaetsa",
+    "Смотрим правильная ли привязка на свитче (если она есть) / настройки на оборудовании клиента / трассировку на клиента к которому встраиваеться / в отдельных случаях можно пере выдать ip / если все ок удаляем деск. сохраняем конфиг"
+  ),
 ];
-
-
 
 const Row = (props) => {
   const { row } = props;
-  // console.log(row)
   const [open, setOpen] = useState(false);
   const classes = useRowStyles();
- 
-
   return (
     <React.Fragment>
       <TableRow className={classes.root}>
-        <TableCell style={{width: '5%'}}>
+        <TableCell style={{ width: "5%" }}>
           <IconButton
             aria-label="expand row"
             size="small"
@@ -67,9 +85,7 @@ const Row = (props) => {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell component="th" >
-          {row.name}
-        </TableCell>
+        <TableCell component="th">{row.name}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -82,29 +98,23 @@ const Row = (props) => {
   );
 };
 
-
 export const Descriptions = () => {
   const [search, setSearch] = useState(null);
-  const { filteredData, loading } = useTableSearch ({
-    search, retrieve: rows
-  })
-  console.log(filteredData);
-  console.log(loading);
-  console.log(search);
-  console.log(rows);
-
+  const { filteredData, loading } = useTableSearch({
+    search,
+    retrieve: rows,
+  });
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
             <TableCell colSpan={2}>
-            <TextField
-              placeholder="Search"
-              onChange={(e) => setSearch(e.target.value)}
-            />
+              <TextField
+                placeholder="Search"
+                onChange={(e) => setSearch(e.target.value)}
+              />
             </TableCell>
-         
           </TableRow>
         </TableHead>
         <TableBody>
@@ -116,8 +126,3 @@ export const Descriptions = () => {
     </TableContainer>
   );
 };
-
-{
-  /* <EnhancedTableToolbar numSelected={selected.length} handleSearch={this.handleSearch} 
-value={this.searchValue} /> */
-}
