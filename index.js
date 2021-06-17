@@ -18,13 +18,13 @@ if (process.env.NODE_ENV === 'production'){
 }
 // need start "npm run build" and sendFile
 
-// app.get('/', (req, res) => {
-//    res.send('message: server start!')
-//})
-const path = require('path');
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
-  });
+app.get('/', (req, res) => {
+   res.send('message: server start!')
+})
+//const path = require('path');
+//  app.get('*', (req, res) => {
+//    res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+//  });
 
 app.use('/api', router)
 
