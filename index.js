@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === 'production'){
 //})
 const path = require('path');
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'src', 'index.js'));
+    res.send(path.resolve(__dirname, 'client', 'src', 'index.js'));
   });
 
 app.use('/api', router)
