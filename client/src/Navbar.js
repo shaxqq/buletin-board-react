@@ -14,8 +14,8 @@ export const Navbar = () => {
     <AppBar className={classes.rootNav} color='default' >
       <Toolbar style={{display: 'flex', justifyContent: 'space-between'}}>
         <div style={{display: 'flex', alignItems: 'center'}}>
-        <Menu />
-        <Typography variant="h6">Information</Typography>
+        {/* <Menu /> */}
+        <Typography variant="h6">Доска объявлений</Typography>
         </div>
         <Weather />
       </Toolbar>
