@@ -78,12 +78,12 @@ const ViewComp = (props) => {
         <Box className={classes.createInputBox}>
           <TextField
             id="title"
-            label="Nickname"
+            label="Имя"
             onChange={changeTitle}
             value={post.title}
           />
           <FormControl className={classes.formControl}>
-            <InputLabel id="demo-simple-select-label">Options </InputLabel>
+            <InputLabel id="demo-simple-select-label">Категории </InputLabel>
             <Select
               labelId="city"
               id="city"
@@ -100,7 +100,7 @@ const ViewComp = (props) => {
         </Box>
         <TextField
           id="content"
-          label="Text"
+          label="Описание"
           rows={6}
           multiline
           value={post.content}
